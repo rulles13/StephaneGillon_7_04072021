@@ -46,9 +46,7 @@ exports.login = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));*/
 };
 
-/* const db = require("../models");
-const User = db.user;
-const Op = db.Sequelize.Op;
+/*
 
 // Create and Save a new Tutorial
 exports.create = (req, res) => {

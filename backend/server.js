@@ -29,7 +29,6 @@ db.sequelize.sync(); // db ok
 app.use('/user', userRoutes);
 
 
-
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

@@ -4,6 +4,7 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/login">Login</router-link> |
+      <router-link to="/signup">Sign Up</router-link> |
       <router-link to="/messages">Messages</router-link>
     </div>
     <router-view/>
@@ -23,7 +24,7 @@
   padding: 30px;
   text-align: right;
   background-color: white;
-  opacity: 50%;
+  opacity: 100%;
 }
 
 #nav a {

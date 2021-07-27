@@ -8,10 +8,10 @@ router.post('/login', userCtrl.login);
 
 module.exports = router;
 
-/* const db = require("../models");
+const db = require("../models");
 const User = db.user;
 const Op = db.Sequelize.Op;
-
+/* 
 // Create and Save a new Tutorial
 exports.create = (req, res) => {
   
