@@ -6,7 +6,7 @@ const userRoutes = require('./routes/user.route');
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:8080"
 };
 
 app.use(cors(corsOptions));
@@ -26,7 +26,7 @@ db.sequelize.sync(); // db ok
 
 // simple route
 
-app.use('/user', userRoutes);
+app.use('/user', userRoutes);  //supprimer ???
 
 
 // set port, listen for requests

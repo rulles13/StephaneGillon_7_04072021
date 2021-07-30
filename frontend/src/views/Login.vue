@@ -1,17 +1,39 @@
 <template>
   <form class="formLog">
-    <label for="fname">First name:</label><br>
-    <input type="text" id="fname" name="fname"><br>
-    <label for="lname">Last name:</label><br>
-    <input type="text" id="lname" name="lname"><br>
-    <!-- <button v-on:click="greet">Connexion</button> -->
+    <label for="email">email:</label><br>
+    <input type="email" id="email" name="email" v-model="email"><br>
+    <label for="password">password:</label><br>
+    <input type="text" id="password" name="password" v-model="password"><br>
+    <button v-on:click.prevent="login()">login</button>
 
   </form>
 </template>
 
 <script>
-export default {
+import axios from 'axios'
 
+export default {
+  name: 'Login',
+  data() {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    login() {
+      axios.post('user/login',{
+        email: this.email,
+        password: this.password
+      }).then((response) => {
+        console.log(response.data);
+        this.$router.push('/');
+        localStorage.setItem('token', response.data.token);
+        });  
+       
+      this.$router.push('/');
+    }
+  }
 }
 </script>
 

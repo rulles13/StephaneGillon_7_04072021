@@ -4,12 +4,14 @@
     <input type="email" id="email" name="email" v-model="email"><br>
     <label for="password">password:</label><br>
     <input type="text" id="password" name="password" v-model="password"><br>
-    <button v-on:click="signUp()">inscription</button>
+    <button v-on:click.prevent="signUp()">inscription</button>
 
   </form>
 </template>
 
 <script>
+import axios from 'axios' 
+
 export default {
   name: 'SignUp',
   data() {
@@ -21,11 +23,15 @@ export default {
   },
   //computed : //bouton grisé si champs vide --- secondaire !!
   methods: {
-    signUp() {
-      console.log(this.email + this.password);
     
-      // fetch
-      return (this.email + this.password); 
+    signUp() {
+      axios.post('user/signup', {
+        email: this.email,
+        password: this.password
+      }).then((response) => {
+        console.log(response.data);
+        this.$router.push('/');
+      });
     }
     
   } 

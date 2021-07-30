@@ -10,7 +10,9 @@ module.exports = router;
 
 const db = require("../models");
 const User = db.user;
-const Op = db.Sequelize.Op;
+const Op = db.Sequelize.Op; //qu'est-ce que Op ?
+
+
 /* 
 // Create and Save a new Tutorial
 exports.create = (req, res) => {
