@@ -5,9 +5,9 @@
       
       <router-link 
         v-for="message in messages"
-        :key="message.titre"
+        :key="message.id"
         class="articleBox"
-        :to="{ name: 'ReadMessage', params: {id: message.id }}" 
+        :to="{ name: 'ReadMessage', params: {id: message.id, titre: message.titre, text: message.text }}" 
       >
         <h2>{{ message.titre }}</h2>
         <div v-html="message.text"></div>

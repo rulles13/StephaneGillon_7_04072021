@@ -23,25 +23,17 @@ exports.signup = (req, res, next) => {
 
 exports.login = (req, res, next) => {
   console.log("test export login");
-  User.findOne({
-    where: {
-      email: req.body.email,
-    }
-  })
-  .then(user => {
-    if (!user) {
-      return res.status(401).json({ error: 'Utilisateur non trouvé !' });
-    }
-    console.log(user);
-    bcrypt.compare(req.body.password, user.datavalues.password)
+  User.findOne({where: {email: req.body.email} })
+    .then((user) => {
+      bcrypt.compare(req.body.password, user.password)
       .then(valid => {
         if (!valid) {
           return res.status(401).json({ error: 'Mot de passe incorrect !' });
         }
         res.status(200).json({
-          userId: user.datavalues.id,
+          userId: user.id,
           token: jwt.sign(
-            { userId: user.datavalues.id }, 
+            { userId: user.id }, 
             process.env.SECRET_PASS,
             { expiresIn: '24h' }
           )
@@ -50,5 +42,7 @@ exports.login = (req, res, next) => {
       .catch(error => res.status(500).json({ error }));
     })
     .catch(error => res.status(500).json({ error }));
+      
+
 };
 
