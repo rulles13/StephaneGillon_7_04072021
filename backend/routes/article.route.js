@@ -2,6 +2,19 @@ const express = require('express');
 const router = express.Router();
 
 const articleCtrl = require('../controllers/article.controller');
+
+router.post('/create', articleCtrl.create);
+
+module.exports = router;
+
+const db = require("../models");
+const Article = db.article;
+const Op = db.Sequelize.Op;
+
+/*const express = require('express');
+const router = express.Router();
+
+const articleCtrl = require('../controllers/article.controller');
 const auth = require('../middleware/auth');
 const multer = require('../middleware/multer-config');
 
@@ -13,4 +26,4 @@ router.get('/:id', auth, articleCtrl.getOneArticle);
 router.post('/:id/like', auth, articleCtrl.updateLike);
 
 
-module.exports = router;
+module.exports = router;*/

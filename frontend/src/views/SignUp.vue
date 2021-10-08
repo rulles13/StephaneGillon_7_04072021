@@ -1,12 +1,29 @@
 <template>
   <form class="formLog">
-    <label for="email">email:</label><br>
-    <input type="email" id="email" name="email" v-model="email"><br>
-    <label for="password">password:</label><br>
-    <input type="text" id="password" name="password" v-model="password"><br>
-    <button v-on:click.prevent="signUp()">inscription</button>
-
+    <h3>Sign up</h3>
+    <div class="form-group">
+      <label>First Name</label>
+      <input type="text" class="form-control" v-model="first_name" placeholder="First Name"/>
+    </div>
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" class="form-control" v-model="last_name" placeholder="Last Name"/>
+    </div>
+    <div class="form-group">
+      <label>Birthdate</label>
+      <input type="date" class="form-control" v-model="birthdate" placeholder="Birthdate"/>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" class="form-control" v-model="email" placeholder="Email"/>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-control" v-model="password" placeholder="Password"/>
+    </div>
+    <button class="btn btn-success" v-on:click.prevent="signUp()">Signup</button>
   </form>
+
 </template>
 
 <script>
@@ -16,24 +33,28 @@ export default {
   name: 'SignUp',
   data() {
     return {
-      email: "",
-      password:""
+      first_name: '',
+      last_name: '',
+      birthdate:'',
+      email: '',
+      password:''
       
     } 
   },
   //computed : //bouton grisé si champs vide --- secondaire !!
-  methods: {
-    
+  methods: {  
     signUp() {
       axios.post('user/signup', {
+        first_name: this.first_name,
+        last_name: this.last_name,
+        birthdate: this.birthdate,
         email: this.email,
-        password: this.password
+        password: this.password 
       }).then((response) => {
         console.log(response.data);
         this.$router.push('/');
       });
-    }
-    
+    }  
   } 
 }
 

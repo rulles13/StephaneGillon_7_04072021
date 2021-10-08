@@ -1,6 +1,6 @@
 <template>
   <div class="messages">
-    <h1>messages</h1>
+    <h1>Articles</h1>
     <div class="article">
       
       <router-link 

@@ -1,8 +1,21 @@
-const { user } = require('../models');
+const { article } = require('../models');
 
 const db = require("../models");
 const Article = db.article;
 const Op = db.Sequelize.Op;
+
+exports.create = (req, res, next) => {
+  
+    const article = {
+      text: req.body.text,
+      image_link: req.body.image_link,
+      writer: req.body.writer
+    }
+    console.log(article);
+    Article.create(article)
+      .then(() => res.status(201).json({ message: 'Article créé !' }))
+      .catch(error => res.status(400).json({ error }));
+};  
 
 /*
 
