@@ -5,16 +5,20 @@ const Article = db.article;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res, next) => {
-  
-    const article = {
-      text: req.body.text,
-      image_link: req.body.image_link,
-      writer: req.body.writer
-    }
-    console.log(article);
-    Article.create(article)
-      .then(() => res.status(201).json({ message: 'Article créé !' }))
-      .catch(error => res.status(400).json({ error }));
+
+  let attachment = null;
+  attachment = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
+  console.log(req.file.filename);
+
+  const article = {
+    text: req.body.text,
+    image_link: attachment,
+    writer: req.body.writer
+  }
+  console.log(article);
+  Article.create(article)
+    .then(() => res.status(201).json({ message: 'Article créé !' }))
+    .catch(error => res.status(400).json({ error }));
 };  
 
 /*

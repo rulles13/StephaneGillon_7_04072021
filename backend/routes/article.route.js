@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 const articleCtrl = require('../controllers/article.controller');
+const multer = require('../middleware/multer-config');
 
-router.post('/create', articleCtrl.create);
+router.post('/create', multer, articleCtrl.create);
 
 module.exports = router;
 

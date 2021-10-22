@@ -5,7 +5,9 @@
       <router-link to="/login">Login</router-link> |
       <router-link to="/signup">Sign Up</router-link> |
       <router-link to="/articles">Articles</router-link> |
-      <router-link to="/create">Create</router-link>
+      <router-link to="/create">Create</router-link> |
+      <router-link to="/image">Image</router-link>
+
     </div>
     <router-view/>
   </div>

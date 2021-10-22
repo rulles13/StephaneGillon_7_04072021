@@ -6,7 +6,8 @@ const articleRoutes = require('./routes/article.route');
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8080"
+  origin: ["http://localhost:8080","http://192.168.1.57:8080"]
+
 };
 
 app.use(cors(corsOptions));
