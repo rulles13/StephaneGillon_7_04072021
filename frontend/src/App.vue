@@ -3,15 +3,30 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/login">Login</router-link> |
+      <div @click="logout()">Logout</div> |
       <router-link to="/signup">Sign Up</router-link> |
-      <router-link to="/articles">Articles</router-link> |
       <router-link to="/create">Create</router-link> |
-      <router-link to="/image">Image</router-link>
-
+      <router-link to="/articles">Articles</router-link> 
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+            
+    }
+  },
+  methods: {
+    logout() {
+      localStorage.removeItem('token');
+      window.location.reload();
+    }
+  }
+}
+</script>
 
 <style>
   @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');

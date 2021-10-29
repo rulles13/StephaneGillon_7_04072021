@@ -4,6 +4,7 @@ const cors = require("cors");
 const userRoutes = require('./routes/user.route');
 const articleRoutes = require('./routes/article.route');
 const app = express();
+const path = require('path');
 
 var corsOptions = {
   origin: ["http://localhost:8080","http://192.168.1.57:8080"]
@@ -26,7 +27,7 @@ db.sequelize.sync(); // db ok
 //});
 
 // simple route
-
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/user', userRoutes); 
 app.use('/article', articleRoutes);
 

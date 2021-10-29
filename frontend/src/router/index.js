@@ -34,7 +34,7 @@ const routes = [
     component: () => import('../views/Articles.vue')
   },
   {
-    path: '/messages/:id',
+    path: '/article/:id',
     name: 'ReadMessage',
     component: ReadMessage
   },

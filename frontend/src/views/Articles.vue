@@ -1,16 +1,18 @@
 <template>
   <div class="messages">
     <h1>Articles</h1>
+    
     <div class="article">
       
       <router-link 
-        v-for="message in messages"
-        :key="message.id"
+        v-for="article in articles"
+        :key="article.id"
         class="articleBox"
-        :to="{ name: 'ReadMessage', params: {id: message.id, titre: message.titre, text: message.text }}" 
+        :to="{ name: 'ReadMessage', params: {id: article.id, text: article.text, writer: article.writer }}" 
       >
-        <h2>{{ message.titre }}</h2>
-        <div v-html="message.text"></div>
+        <h2>{{ article.text }}</h2>
+        <img :src="article.image_link">
+        <div v-html="article.writer"></div>
 
       </router-link>
     </div>
@@ -19,46 +21,56 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
+  name: 'Articles',
   data() {
-    return {
-      messages: [
-        {
-          id: 1,
-          titre: "Hello world",
-          text: "fdsbv ml ;sdfl gm! sdf gfdml; dfmls g fds"
-        },
-        {
+        return{
+      articles: null
+    }
+  },
+  
+    methods: {
+      importAll() {
+        axios.get('/article/findAll')
+        .then((response) => {
+          this.articles = response.data
           
-          id: 2,
-          titre: "Message numéros 2",
-          text: "kgsndfkl kfd gdfk fdks gdf fdsbv ml ;sdfl gm! sdf gfdml; dfmls g fds"
-        },
-        {
-          id: 3,
-          titre: "Message numéros 3",
-          text: "kgsndfkl kfd gdfk fdks gdf fdsbv ml ;sdfl gm! sdf gfdml; dfmls g fds"
-        },
-      ],
+          console.log(response.data);
+          }, (error) => {
+            console.log(error + " *articles not imported*");
+        });  
+      }
+    },
+    mounted(){
+      this.importAll()
     }
   }
-};  
+  
 </script>
 
 <style scoped lang="css">
   .article{
     display: flex;
+    flex-direction: column;
     width: 80%;
     border: 1px solid blue;
+    margin: auto;
 
   }
   .articleBox{
+    display: flex;
     border: 2px solid black;
-    width: 250px;
+    width: 20%;
     height: 400px;
     padding: 10px;
     margin: 20px;
     text-align: left;
+  }
+  .imageBox{
+    display: flex;
+    height: 50%;
+
   }
 
 </style>

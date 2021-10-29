@@ -3,8 +3,11 @@ const router = express.Router();
 
 const articleCtrl = require('../controllers/article.controller');
 const multer = require('../middleware/multer-config');
+const auth = require('../middleware/auth');
 
-router.post('/create', multer, articleCtrl.create);
+router.post('/create', auth, multer, articleCtrl.create);
+router.get('/findAll',articleCtrl.findAll);
+router.get('/:id',articleCtrl.findOne);
 
 module.exports = router;
 

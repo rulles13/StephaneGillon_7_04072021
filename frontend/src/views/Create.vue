@@ -48,7 +48,7 @@ export default {
       axios.post('/article/create',formData,config)
       .then((response) => {
         console.log(response.data);
-        //this.$router.push('/articles');
+        this.$router.push('/articles');
         }, (error) => {
           console.log(error + " article not created");
       });  

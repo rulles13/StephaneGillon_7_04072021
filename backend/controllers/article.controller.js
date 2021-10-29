@@ -4,6 +4,7 @@ const db = require("../models");
 const Article = db.article;
 const Op = db.Sequelize.Op;
 
+// Create an article with picture.
 exports.create = (req, res, next) => {
 
   let attachment = null;
@@ -21,18 +22,21 @@ exports.create = (req, res, next) => {
     .catch(error => res.status(400).json({ error }));
 };  
 
+// Retrieve all Articles from the database.
+exports.findAll = (req, res, next) => {
+  Article.findAll()
+    .then(articles => res.status(201).json(articles))
+    .catch(error => res.status(400).json({ error }));
+};
+
+// Retrieve an Article from the database.
+exports.findOne = (req, res, next) => {
+  Article.findOne({where: {id: req.body.id} })
+    .then(articles => res.status(201).json(articles))
+    .catch(error => res.status(400).json({ error }));
+};
+
 /*
-
-// Create and Save a new Tutorial
-exports.create = (req, res) => {
-  
-};
-
-// Retrieve all Tutorials from the database.
-exports.findAll = (req, res) => {
-  
-};
-
 // Find a single Tutorial with an id
 exports.findOne = (req, res) => {
   
