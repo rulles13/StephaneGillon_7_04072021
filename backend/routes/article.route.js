@@ -12,7 +12,7 @@ router.get('/:id',articleCtrl.findOne);
 module.exports = router;
 
 const db = require("../models");
-const Article = db.article;
+const Article = db.articles;
 const Op = db.Sequelize.Op;
 
 /*const express = require('express');

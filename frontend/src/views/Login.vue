@@ -35,6 +35,7 @@ export default {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('idUser', response.data.userId);
         localStorage.setItem('role', response.data.userRole);
+        axios.defaults.headers["Authorization"] = `Bearer ${localStorage.getItem("token")}`;
         }, (error) => {
           console.log(error + " error Axios.post");
       });  

@@ -2,10 +2,10 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <div @click="logout()">Logout</div> |
-      <router-link to="/signup">Sign Up</router-link> |
-      <router-link to="/create">Create</router-link> |
+      <div v-if="isLog()" @click="logout()">Logout | </div>
+      <router-link v-if="!isLog()" to="/login">Login | </router-link> 
+      <router-link v-if="!isLog()" to="/signup">Sign Up | </router-link>
+      <router-link v-if="isLog()" to="/create" | >Create</router-link>
       <router-link to="/articles">Articles</router-link> 
     </div>
     <router-view/>
@@ -23,6 +23,11 @@ export default {
     logout() {
       localStorage.removeItem('token');
       window.location.reload();
+    },
+
+    isLog() {
+      return localStorage.getItem('token');
+
     }
   }
 }
@@ -35,16 +40,19 @@ export default {
   *{
     box-sizing: border-box;
   }
+  
   body {
-    background: #1c8ef9;
+    background: #091f43;
     min-height: 100vh;
     display: flex;
     font-weight: 400;
     font-family: 'fira Sans', sans-serif;
+    color: white;
   }
   h1, h2, h3, h4, h5, h6, label, span {
     font-weight: 500;
     font-family: 'Indie Flower', cursive;
+    color: #d1515a;
   }
   body, html, #app, #root, .auth-wrapper {
     width: 100%;

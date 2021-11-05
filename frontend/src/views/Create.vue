@@ -4,7 +4,7 @@
     <label for="text">text:</label><br>
     <input type="text" id="text" name="text" v-model="newPost.text"><br>
     <label for="image">image:</label><br>
-    <input type="file" @change="setFile">
+    <input type="file" @change="setFile($event)">
     <br>
     <button v-on:click.prevent="create()">create</button>
   </form>

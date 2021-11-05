@@ -8,10 +8,10 @@
         v-for="article in articles"
         :key="article.id"
         class="articleBox"
-        :to="{ name: 'ReadMessage', params: {id: article.id, text: article.text, writer: article.writer }}" 
+        :to="{ name: 'ReadMessage', params: {id: article.id}}" 
       >
         <h2>{{ article.text }}</h2>
-        <img :src="article.image_link">
+        <img :src="article.image_link" class="imageBox">
         <div v-html="article.writer"></div>
 
       </router-link>
@@ -50,26 +50,34 @@ export default {
 </script>
 
 <style scoped lang="css">
+  h1{
+    height: 1em;
+    size: 16px;
+  }
+  h2{
+    size: 14px;
+  }
   .article{
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     width: 80%;
     border: 1px solid blue;
     margin: auto;
+    align-content: center;
 
   }
   .articleBox{
-    display: flex;
-    border: 2px solid black;
+    display: block;
+    background-color: white;
+    border-radius: 10px;
     width: 20%;
     height: 400px;
-    padding: 10px;
-    margin: 20px;
-    text-align: left;
+    text-align: center;
   }
   .imageBox{
     display: flex;
-    height: 50%;
+    width: 100%;
+    height:200px;
 
   }
 

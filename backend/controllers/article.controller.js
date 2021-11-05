@@ -31,7 +31,7 @@ exports.findAll = (req, res, next) => {
 
 // Retrieve an Article from the database.
 exports.findOne = (req, res, next) => {
-  Article.findOne({where: {id: req.body.id} })
+  Article.findOne({where: {id: req.params.id} })
     .then(articles => res.status(201).json(articles))
     .catch(error => res.status(400).json({ error }));
 };
