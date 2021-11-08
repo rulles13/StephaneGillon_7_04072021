@@ -5,7 +5,7 @@
       <div v-if="isLog()" @click="logout()">Logout | </div>
       <router-link v-if="!isLog()" to="/login">Login | </router-link> 
       <router-link v-if="!isLog()" to="/signup">Sign Up | </router-link>
-      <router-link v-if="isLog()" to="/create" | >Create</router-link>
+      <router-link v-if="isLog()" to="/create">Create | </router-link>
       <router-link to="/articles">Articles</router-link> 
     </div>
     <router-view/>

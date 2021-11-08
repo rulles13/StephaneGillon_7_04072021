@@ -36,7 +36,14 @@ exports.findOne = (req, res, next) => {
     .catch(error => res.status(400).json({ error }));
 };
 
+// Remove an Article from the database.
+exports.delete = (req, res, next) => {
+  Article.destroy({where: {id: req.params.id} })
+  .then(() => res.status(200).json({ message: 'Objet supprimé !'}))
+  .catch(error => res.status(400).json({ error }));
+};
 /*
+
 // Find a single Tutorial with an id
 exports.findOne = (req, res) => {
   

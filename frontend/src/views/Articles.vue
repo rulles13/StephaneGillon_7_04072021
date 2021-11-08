@@ -13,7 +13,10 @@
         <h2>{{ article.text }}</h2>
         <img :src="article.image_link" class="imageBox">
         <div v-html="article.writer"></div>
-
+        <div class="deleteBox">
+          <img class="iconSVG" src="../icons/trash-alt-solid.svg" alt="recycle">
+          <button v-on:click.prevent="sup(article.id)">delete</button>
+      </div>
       </router-link>
     </div>
 
@@ -40,6 +43,18 @@ export default {
           }, (error) => {
             console.log(error + " *articles not imported*");
         });  
+      },
+
+      sup(id) {
+        
+        axios.delete("/article/" + id)
+        //to do : delete image
+        .then((response) => {
+          console.log(response)
+          this.importAll()
+          }, (error) => {
+            console.log(error + " *article not deleted*")
+        });
       }
     },
     mounted(){
@@ -61,7 +76,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     width: 80%;
-    border: 1px solid blue;
+    /*border: 1px solid blue;*/
     margin: auto;
     align-content: center;
 
@@ -73,12 +88,29 @@ export default {
     width: 20%;
     height: 400px;
     text-align: center;
+    text-decoration: none;
+    margin: 20px;
+    
   }
   .imageBox{
     display: flex;
     width: 100%;
     height:200px;
 
+  }
+
+  .deleteBox{
+    display: flex;
+    align-items: center;
+    width: 150px;
+    height: 30px;
+  }
+  .iconSVG{
+    display: flex;
+    width: 25px;
+    height: 25px;
+    background-color: cyan;
+    margin: 10px;
   }
 
 </style>
