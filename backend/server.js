@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const userRoutes = require('./routes/user.route');
 const articleRoutes = require('./routes/article.route');
+const comentRoutes = require('./routes/coment.route')
 const app = express();
 const path = require('path');
 
@@ -30,6 +31,7 @@ db.sequelize.sync(); // db ok
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/user', userRoutes); 
 app.use('/article', articleRoutes);
+app.use('/coment', comentRoutes);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
