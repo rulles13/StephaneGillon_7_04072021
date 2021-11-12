@@ -75,8 +75,7 @@ export default {
   .article{
     display: flex;
     flex-wrap: wrap;
-    width: 80%;
-    /*border: 1px solid blue;*/
+    width: 100%;
     margin: auto;
     align-content: center;
 
@@ -85,7 +84,7 @@ export default {
     display: block;
     background-color: white;
     border-radius: 10px;
-    width: 20%;
+    width: 100%;
     height: 400px;
     text-align: center;
     text-decoration: none;
