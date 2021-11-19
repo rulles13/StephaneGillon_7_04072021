@@ -5,13 +5,16 @@ module.exports = (sequelize, Sequelize) => {
       autoIncrement: true,
       primaryKey: true
     },
+    titre: {
+      type: Sequelize.STRING
+    },
     text: {
       type: Sequelize.STRING
     },
     image_link: {
       type: Sequelize.STRING
     },
-    writer: {
+    userId: {
       type: Sequelize.SMALLINT
     }
   });

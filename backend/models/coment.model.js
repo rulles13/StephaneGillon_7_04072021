@@ -5,14 +5,14 @@ module.exports = (sequelize, Sequelize) => {
       autoIncrement: true,
       primaryKey: true
     },
-    writer: {
+    userId: {
       type: Sequelize.STRING
     },
-    text: {
+    textComent: {
       type: Sequelize.STRING
     },
     articleId: {
-      type: Sequelize.STRING
+      type: Sequelize.SMALLINT
     }
   });
 

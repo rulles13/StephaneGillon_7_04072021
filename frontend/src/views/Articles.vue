@@ -1,7 +1,7 @@
 <template>
   <div class="messages">
     <h1>Articles</h1>
-    
+    <router-link to="/create">Create</router-link>
     <div class="article">
       
       <router-link 
@@ -10,9 +10,9 @@
         class="articleBox"
         :to="{ name: 'ReadMessage', params: {id: article.id}}" 
       >
-        <h2>{{ article.text }}</h2>
+        <h2>{{ article.titre }}</h2>
         <img :src="article.image_link" class="imageBox">
-        <div v-html="article.writer"></div>
+        <div v-text="`By ${article.user.first_name} ${article.user.last_name}`"></div> 
         <div class="deleteBox">
           <img class="iconSVG" src="../icons/trash-alt-solid.svg" alt="recycle">
           <button v-on:click.prevent="sup(article.id)">delete</button>
@@ -111,5 +111,23 @@ export default {
     background-color: cyan;
     margin: 10px;
   }
+
+@media all and (min-width: 600px) {
+  .article{
+    
+    width: 90%;
+    margin: auto;
+    align-content: center;
+
+  }
+  
+  .articleBox{
+    width: 300px;
+    margin: auto;
+    align-content: center;
+    margin: 20px;
+  }
+  
+}
 
 </style>

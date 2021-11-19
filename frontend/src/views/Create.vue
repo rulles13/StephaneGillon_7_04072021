@@ -1,12 +1,14 @@
 <template>
   <form class="formLog">
-    <h1>Write a new message</h1>
+    <h1>Ecrivez un message</h1>
+    <label for="text">titre:</label><br>
+    <input type="text" id="titre" name="titre" v-model="newPost.titre"><br>
     <label for="text">text:</label><br>
-    <input type="text" id="text" name="text" v-model="newPost.text"><br>
+    <input type="textarea" id="text" name="text" v-model="newPost.text"><br>
     <label for="image">image:</label><br>
     <input type="file" @change="setFile($event)">
-    <br>
-    <button v-on:click.prevent="create()">create</button>
+    <br><br>
+    <button v-on:click.prevent="create()">créer</button>
   </form>
 </template>
 
@@ -17,9 +19,10 @@ export default {
   data() {
     return {
       newPost:{
+        titre:'',
         text: '',
         image_link: '',
-        writer: ''
+        userId: ''
       },
       selectedFile: null,
     }
@@ -35,8 +38,9 @@ export default {
       const formData = new FormData();
        formData.append("image", this.selectedFile);
        formData.append("image_link", this.selectedFile.name);
+       formData.append("titre", this.newPost.titre);
        formData.append("text", this.newPost.text);
-       formData.append("writer", localStorage.getItem('idUser'));
+       formData.append("userId", localStorage.getItem('idUser'));
 
       const config = {
         headers: {

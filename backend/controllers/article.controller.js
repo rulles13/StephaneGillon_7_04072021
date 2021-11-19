@@ -1,8 +1,13 @@
 const { article } = require('../models');
+const jwt = require('jsonwebtoken');
 
 const db = require("../models");
 const Article = db.article;
+const User = db.user;
 const Op = db.Sequelize.Op;
+
+User.hasMany(Article);
+Article.belongsTo(User);
 
 // Create an article with picture.
 exports.create = (req, res, next) => {
@@ -12,9 +17,10 @@ exports.create = (req, res, next) => {
   console.log(req.file.filename);
 
   const article = {
+    titre: req.body.titre,
     text: req.body.text,
     image_link: attachment,
-    writer: req.body.writer
+    userId: req.body.userId
   }
   console.log(article);
   Article.create(article)
@@ -24,7 +30,14 @@ exports.create = (req, res, next) => {
 
 // Retrieve all Articles from the database.
 exports.findAll = (req, res, next) => {
-  Article.findAll()
+  Article.findAll(
+    {include:
+      {
+      model: User,
+      attributes: ['first_name', 'last_name', 'id']
+      }
+    }
+  )
     .then(articles => res.status(201).json(articles))
     .catch(error => res.status(400).json({ error }));
 };
@@ -38,12 +51,30 @@ exports.findOne = (req, res, next) => {
 
 // Remove an Article from the database.
 exports.delete = (req, res, next) => {
-  Article.destroy({where: {id: req.params.id} })
+  const token = req.headers.authorization.split(' ')[1];
+  const decodedToken = jwt.verify(token, process.env.SECRET_PASS);    
+  const userIdToken = decodedToken.userId;
+
+  Article.findOne({where: {id: req.params.id} })
+    .then(article => {
+      if (article.userId === userIdToken) {
+        Article.destroy({where: {id: req.params.id} })
+          .then(() => res.status(200).json({ message: 'Objet supprimé !'}))
+          .catch(error => res.status(400).json({ error }));
+      }
+      else {
+        res.status(400).json({ error })
+      }
+      
+    })
+    .catch(error => res.status(400).json({ error }));
+};
+/*  Article.destroy({where: {id: req.params.id} })
   
   .then(() => res.status(200).json({ message: 'Objet supprimé !'}))
   .catch(error => res.status(400).json({ error }));
-};
-/*
+
+
 
 // Find a single Tutorial with an id
 exports.findOne = (req, res) => {

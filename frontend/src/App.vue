@@ -1,12 +1,13 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <div v-if="isLog()" @click="logout()">Logout | </div>
-      <router-link v-if="!isLog()" to="/login">Login | </router-link> 
-      <router-link v-if="!isLog()" to="/signup">Sign Up | </router-link>
-      <router-link v-if="isLog()" to="/create">Create | </router-link>
-      <router-link to="/articles">Articles</router-link> 
+      <router-link to="/">Home</router-link> | 
+      <router-link to="/articles">Articles</router-link> | 
+      <span v-if="isLog()"> <router-link to="/logout">Logout</router-link> | </span>
+      <span v-if="!isLog()"><router-link to="/login">Login</router-link> | </span>
+      <span v-if="!isLog()"><router-link to="/signup">Sign Up</router-link> | </span>
+      <!-- <router-link v-if="isLog()" to="/create">Create</router-link> -->
+       
     </div>
     <router-view/>
   </div>
@@ -14,16 +15,14 @@
 
 <script>
 export default {
+  
   data() {
     return {
             
     }
   },
   methods: {
-    logout() {
-      localStorage.removeItem('token');
-      window.location.reload();
-    },
+    
 
     isLog() {
       return localStorage.getItem('token');
