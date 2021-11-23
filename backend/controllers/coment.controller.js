@@ -1,12 +1,14 @@
-const { coment } = require('../models');
+//const { coment, user } = require('../models');
 
 const db = require("../models");
 const Coment = db.coment;
 const Article = db.article;
+const User = db.user;
 const Op = db.Sequelize.Op;
 
-/*Article.hasMany(Coment);
-Coment.belongsTo(Article);*/
+Article.hasMany(Coment);
+Coment.belongsTo(Article);
+Coment.belongsTo(User);
 
 // Create a coment.
 exports.create = (req, res, next) => {

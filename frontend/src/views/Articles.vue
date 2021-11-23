@@ -1,7 +1,7 @@
 <template>
   <div class="messages">
     <h1>Articles</h1>
-    <router-link to="/create">Create</router-link>
+    <span v-if="isLog()"><router-link to="/create">Create</router-link></span>
     <div class="article">
       
       <router-link 
@@ -12,11 +12,12 @@
       >
         <h2>{{ article.titre }}</h2>
         <img :src="article.image_link" class="imageBox">
+        <div>{{article.text}}</div>
         <div v-text="`By ${article.user.first_name} ${article.user.last_name}`"></div> 
-        <div class="deleteBox">
+        <div class="deleteBox" v-if="isWriter(article.userId)">
           <img class="iconSVG" src="../icons/trash-alt-solid.svg" alt="recycle">
           <button v-on:click.prevent="sup(article.id)">delete</button>
-      </div>
+        </div>
       </router-link>
     </div>
 
@@ -46,7 +47,6 @@ export default {
       },
 
       sup(id) {
-        
         axios.delete("/article/" + id)
         //to do : delete image
         .then((response) => {
@@ -55,7 +55,17 @@ export default {
           }, (error) => {
             console.log(error + " *article not deleted*")
         });
-      }
+      },
+
+      isLog() {
+      return localStorage.getItem('token');
+      },
+
+      isWriter(writer) {
+        if (localStorage.getItem("idUser") == writer || localStorage.getItem("role") == "admin")
+          {return true;}
+      },
+
     },
     mounted(){
       this.importAll()
@@ -65,19 +75,13 @@ export default {
 </script>
 
 <style scoped lang="css">
-  h1{
-    height: 1em;
-    size: 16px;
-  }
-  h2{
-    size: 14px;
-  }
+  
   .article{
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     margin: auto;
-    align-content: center;
+    justify-content: center;
 
   }
   .articleBox{

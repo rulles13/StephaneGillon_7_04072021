@@ -3,9 +3,9 @@
     <div id="nav">
       <router-link to="/">Home</router-link> | 
       <router-link to="/articles">Articles</router-link> | 
-      <span v-if="isLog()"> <router-link to="/logout">Logout</router-link> | </span>
+      <span v-if="isLog()"><router-link to="/logout">Logout</router-link></span>
       <span v-if="!isLog()"><router-link to="/login">Login</router-link> | </span>
-      <span v-if="!isLog()"><router-link to="/signup">Sign Up</router-link> | </span>
+      <span v-if="!isLog()"><router-link to="/signup">Sign Up</router-link></span>
       <!-- <router-link v-if="isLog()" to="/create">Create</router-link> -->
        
     </div>
@@ -22,11 +22,8 @@ export default {
     }
   },
   methods: {
-    
-
     isLog() {
       return localStorage.getItem('token');
-
     }
   }
 }
@@ -39,6 +36,12 @@ export default {
   *{
     box-sizing: border-box;
   }
+
+  span {
+    font-weight: 400;
+    font-family: 'fira Sans', sans-serif;
+    color: white;
+  }
   
   body {
     background: #091f43;
@@ -48,10 +51,20 @@ export default {
     font-family: 'fira Sans', sans-serif;
     color: white;
   }
-  h1, h2, h3, h4, h5, h6, label, span {
+  h1, h2, h3, h4, h5, h6, label{
     font-weight: 500;
     font-family: 'Indie Flower', cursive;
     color: #d1515a;
+  }
+  h1{
+    margin-top: 0.5em;
+    size: 1em;
+    height: 1.4em;
+  }
+  h2{
+    margin-top: 0.4em;
+    size: 0.9em;
+    height: 1.2em;
   }
   body, html, #app, #root, .auth-wrapper {
     width: 100%;
@@ -59,10 +72,6 @@ export default {
   }
   #app{
     text-align: center;
-  }
-  .navbar-light {
-    background-color: #ffffff;
-    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
   }
   .auth-wrapper {
     display: flex;

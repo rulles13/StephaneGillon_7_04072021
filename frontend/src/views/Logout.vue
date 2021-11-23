@@ -1,14 +1,9 @@
 <template>
   <form class="formLog">
-    <div class="form-group">
-      <label for="email">email:</label><br>
-      <input type="email" id="email" name="email" v-model="email"><br>
-    </div>
-    <div class="form-group">
-      <label for="password">password:</label><br>
-      <input type="password" id="password" name="password" v-model="password"><br>
-    </div>
-    <button v-on:click.prevent="logout()">logout</button>
+    
+    <br><br><button v-on:click.prevent="logout()">log off</button> <br><br>
+    <button v-on:click.prevent="unsuscribe()">Se désinscrire</button> <br><br>
+    <div>Attention toute désinscription est définitive et supprimera vos identifiants, articles et commentaires !</div>
 
   </form>
 </template>
@@ -29,23 +24,13 @@ export default {
       localStorage.removeItem('token');
       localStorage.removeItem('idUser');
       localStorage.removeItem('role');
-      window.location.reload();
+      this.$router.push('/');
     },
-    /*logout() {
-      axios.post('/user/login', {
-        email: this.email,
-        password: this.password
-      }).then((response) => {
-        console.log(response.data);
-        this.$router.push('/');
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('idUser', response.data.userId);
-        localStorage.setItem('role', response.data.userRole);
-        axios.defaults.headers["Authorization"] = `Bearer ${localStorage.getItem("token")}`;
-        }, (error) => {
-          console.log(error + " error Axios.post");
-      });  
-    }*/
+
+    unsuscribe() {
+      window.alert("Vous avez disparu !");
+    }
+   
   }
 }
 </script>

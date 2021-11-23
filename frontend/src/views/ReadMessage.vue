@@ -3,8 +3,7 @@
     <div class="container">
       <h1> {{article.titre}} </h1>
       <img class="imgSolo" :src="article.image_link">
-      <div class="articleText"> {{article.text}} </div>
-      <div v-html="article.userId"></div>  
+      <div class="articleText"> {{article.text}} </div>  
     </div>
     <form class="comentForm">
       <input type="text" v-model="textComent" placeholder="commentary"/>
@@ -36,6 +35,7 @@ export default {
   },
   
     methods: {
+      
       importOne() {
         axios.get(`/article/${this.$route.params.id}`)
         .then((response) => {
@@ -79,26 +79,30 @@ export default {
 
 <style>
 .container{
+  margin: auto;
+  align-self: center;
   width: 300px;
 }
 
 .iconPNG{
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   margin-left: 10px;
 }
 .imgSolo{
   object-fit: cover;
-  height: 300px;
-  width: 300px;
+  height: 100%;
+  width: 100%;
 }
 .commentar{
+  width: 300px;
   display: inline-flex;
   flex-direction: column;
   text-align: right;
-  padding: 10px;
-  margin: 10px;
   
+}
+.articleText{
+  margin: 10px 0;
 }
 .comText{
   display: inline-flex;

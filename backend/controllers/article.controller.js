@@ -1,5 +1,6 @@
-const { article } = require('../models');
+//const { article } = require('../models');
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
 
 const db = require("../models");
 const Article = db.article;
@@ -31,12 +32,15 @@ exports.create = (req, res, next) => {
 // Retrieve all Articles from the database.
 exports.findAll = (req, res, next) => {
   Article.findAll(
-    {include:
-      {
-      model: User,
-      attributes: ['first_name', 'last_name', 'id']
-      }
-    }
+    {
+      order: [['createdAt','DESC']],
+      include:
+        {
+        model: User,
+        attributes: ['first_name', 'last_name', 'id']
+        },
+    },
+    
   )
     .then(articles => res.status(201).json(articles))
     .catch(error => res.status(400).json({ error }));
@@ -58,9 +62,13 @@ exports.delete = (req, res, next) => {
   Article.findOne({where: {id: req.params.id} })
     .then(article => {
       if (article.userId === userIdToken) {
-        Article.destroy({where: {id: req.params.id} })
-          .then(() => res.status(200).json({ message: 'Objet supprimé !'}))
-          .catch(error => res.status(400).json({ error }));
+        const filename = article.image_link.split('/images/')[1];
+        console.log(filename);
+        fs.unlink(`images/${filename}`, () => {
+          Article.destroy({where: {id: req.params.id} })
+            .then(() => res.status(200).json({ message: 'Objet supprimé !'}))
+            .catch(error => res.status(400).json({ error }));
+          });
       }
       else {
         res.status(400).json({ error })
