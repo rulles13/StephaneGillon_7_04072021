@@ -4,7 +4,13 @@ const jwt = require('jsonwebtoken');
 
 const db = require("../models");
 const User = db.user;
+const Article = db.article;
+const Coment = db.coment;
 const Op = db.Sequelize.Op;
+
+User.hasMany(Article);
+Article.belongsTo(User);
+
 
 exports.signup = (req, res, next) => {
   
@@ -37,7 +43,7 @@ exports.login = (req, res, next) => {
           userId: user.dataValues.id,
           userRole: user.dataValues.role,
           token: jwt.sign(
-            { userId: user.dataValues.id }, 
+            { userId: user.dataValues.id, role: user.dataValues.role }, 
             process.env.SECRET_PASS,
             { expiresIn: '24h' }
           )
@@ -50,3 +56,8 @@ exports.login = (req, res, next) => {
 
 };
 
+exports.delete = (req, res) => {
+  User.destroy({where: {id: req.params.id}})
+  .then(() => res.status(201).json({ message: 'Utilisateur supprimé !' }))
+  .catch(error => res.status(400).json({ error }));
+};

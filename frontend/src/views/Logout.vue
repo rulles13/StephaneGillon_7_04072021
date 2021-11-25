@@ -9,14 +9,15 @@
 </template>
 
 <script>
-//import axios from 'axios'
+import axios from 'axios'
 
 export default {
   name: 'Logout',
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      user_id: this.$userId,
     }
   },
   methods: {
@@ -28,7 +29,15 @@ export default {
     },
 
     unsuscribe() {
-      window.alert("Vous avez disparu !");
+      console.log("l'utilisateur est " + localStorage.idUser);
+      axios.delete("/user/" + localStorage.idUser)
+      .then((response) => {
+        window.alert("Vous avez disparu !")
+        this.logout()
+        console.log(response)
+        }, (error) => {
+          console.log(error + " *user not deleted*")
+      });
     }
    
   }

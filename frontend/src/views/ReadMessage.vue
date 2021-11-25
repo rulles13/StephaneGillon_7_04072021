@@ -13,7 +13,7 @@
       <div  v-for="commentar in commentary" :key="commentar.id">
         <div class="comText">
           <div> {{ commentar.textComent }} </div>
-          <img class="iconPNG" src="../icons/delete.png" alt="delete coment">
+          <span v-if="isWriter(commentar.userId)"><img class="iconPNG" src="../icons/delete.png" alt="delete coment" v-on:click.prevent="deleteComent(commentar.id)"></span>
         </div>
       </div>
     </div> 
@@ -60,6 +60,16 @@ export default {
         });  
       },
 
+      deleteComent(id) {
+        axios.delete("/coment/" + id)
+        .then((response) => {
+          console.log(response)
+          this.readComents()
+          }, (error) => {
+            console.log(error + " *coment not deleted*")
+        });
+      },
+
       readComents() {
         axios.get(`/coment/${this.$route.params.id}`)
         .then((response) => {
@@ -67,6 +77,11 @@ export default {
           }, (error) => {
             console.log(error + " *no commentary found*")
         });
+      },
+
+      isWriter(writer) {
+        if (localStorage.getItem("idUser") == writer || localStorage.getItem("role") == "admin")
+          {return true;}
       }
     },
     

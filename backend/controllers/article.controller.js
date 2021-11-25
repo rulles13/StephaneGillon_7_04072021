@@ -58,10 +58,11 @@ exports.delete = (req, res, next) => {
   const token = req.headers.authorization.split(' ')[1];
   const decodedToken = jwt.verify(token, process.env.SECRET_PASS);    
   const userIdToken = decodedToken.userId;
+  const roleToken = decodedToken.role;
 
   Article.findOne({where: {id: req.params.id} })
     .then(article => {
-      if (article.userId === userIdToken) {
+      if (article.userId === userIdToken || roleToken == "admin") {
         const filename = article.image_link.split('/images/')[1];
         console.log(filename);
         fs.unlink(`images/${filename}`, () => {

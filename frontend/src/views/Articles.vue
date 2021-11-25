@@ -39,8 +39,6 @@ export default {
         axios.get('/article/findAll')
         .then((response) => {
           this.articles = response.data
-          
-          console.log(response.data);
           }, (error) => {
             console.log(error + " *articles not imported*");
         });  
@@ -48,7 +46,6 @@ export default {
 
       sup(id) {
         axios.delete("/article/" + id)
-        //to do : delete image
         .then((response) => {
           console.log(response)
           this.importAll()
