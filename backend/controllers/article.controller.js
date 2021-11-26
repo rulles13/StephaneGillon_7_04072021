@@ -7,8 +7,7 @@ const Article = db.article;
 const User = db.user;
 const Op = db.Sequelize.Op;
 
-User.hasMany(Article);
-Article.belongsTo(User);
+Article.belongsTo(User, {onDelete:'CASCADE'});
 
 // Create an article with picture.
 exports.create = (req, res, next) => {
@@ -38,7 +37,7 @@ exports.findAll = (req, res, next) => {
       include:
         {
         model: User,
-        attributes: ['pseudo']
+        attributes: ['first_name','last_name','Id']
         },
     },
     
@@ -59,7 +58,6 @@ exports.delete = (req, res, next) => {
   const token = req.headers.authorization.split(' ')[1];
   const decodedToken = jwt.verify(token, process.env.SECRET_PASS);    
   const userIdToken = decodedToken.userId;
-  console.log("log token : "+ userIdToken);
   const roleToken = decodedToken.role;
 
   Article.findOne({where: {id: req.params.id} })

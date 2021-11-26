@@ -7,9 +7,8 @@ const Article = db.article;
 const User = db.user;
 const Op = db.Sequelize.Op;
 
-Article.hasMany(Coment);
-Coment.belongsTo(Article);
-Coment.belongsTo(User);
+Coment.belongsTo(Article, {onDelete:'CASCADE'});
+Coment.belongsTo(User, {onDelete:'CASCADE'});
 
 // Create a coment.
 exports.create = (req, res, next) => {
@@ -35,7 +34,7 @@ exports.findAll = (req, res, next) => {
 
 exports.delete = (req, res) => {
   coment.destroy({where: {id: req.params.id}})
-  .then(coment => res.status(200))
-  .catch(error => res.status(400).json({ error }));
+    .then(() => res.status(200).json({ message: 'commentaire supprimé !'}))
+    .catch(error => res.status(400).json({ error }));
 }
 

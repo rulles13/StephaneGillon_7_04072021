@@ -8,8 +8,8 @@ const Article = db.article;
 const Coment = db.coment;
 const Op = db.Sequelize.Op;
 
-User.hasMany(Article);
-Article.belongsTo(User);
+User.hasMany(Article, {onDelete:'CASCADE'});
+User.hasMany(Coment, {onDelete:'CASCADE'});
 
 exports.signup = (req, res, next) => {
   
