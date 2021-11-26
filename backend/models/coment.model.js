@@ -5,11 +5,11 @@ module.exports = (sequelize, Sequelize) => {
       autoIncrement: true,
       primaryKey: true
     },
-    userId: {
-      type: Sequelize.STRING
-    },
     textComent: {
       type: Sequelize.STRING
+    },
+    userId: {
+      type: Sequelize.SMALLINT
     },
     articleId: {
       type: Sequelize.SMALLINT

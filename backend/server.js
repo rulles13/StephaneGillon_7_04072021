@@ -22,10 +22,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const db = require("./models");
 
-db.sequelize.sync(); // db ok 
-//db.sequelize.sync({ force: true }).then(() => { /*RAZ db*/
-//     console.log('Drop and re-sync db.');
-//});
+//db.sequelize.sync(); // db ok 
+db.sequelize.sync({ force: true }).then(() => { /*RAZ db*/
+     console.log('Drop and re-sync db.');
+});
 
 // simple route
 app.use('/images', express.static(path.join(__dirname, 'images')));

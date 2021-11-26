@@ -10,8 +10,8 @@
       <input type="text" class="form-control" v-model="last_name" placeholder="Last Name"/>
     </div>
     <div class="form-group">
-      <label>Birthdate</label>
-      <input type="date" class="form-control" v-model="birthdate" placeholder="Birthdate"/>
+      <label>Pseudo</label>
+      <input type="text" class="form-control" v-model="pseudo" placeholder="Pseudo"/>
     </div>
     <div class="form-group">
       <label>Email</label>
@@ -35,7 +35,7 @@ export default {
     return {
       first_name: '',
       last_name: '',
-      birthdate:'',
+      pseudo:'',
       email: '',
       password:''
       
@@ -47,7 +47,7 @@ export default {
       axios.post('user/signup', {
         first_name: this.first_name,
         last_name: this.last_name,
-        birthdate: this.birthdate,
+        pseudo: this.pseudo,
         email: this.email,
         password: this.password 
       }).then((response) => {

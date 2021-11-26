@@ -21,8 +21,9 @@ exports.create = (req, res, next) => {
     titre: req.body.titre,
     text: req.body.text,
     image_link: attachment,
-    userId: req.body.userId
+    userId: req.body.userId,
   }
+  
   console.log(article);
   Article.create(article)
     .then(() => res.status(201).json({ message: 'Article créé !' }))
@@ -37,7 +38,7 @@ exports.findAll = (req, res, next) => {
       include:
         {
         model: User,
-        attributes: ['first_name', 'last_name', 'id']
+        attributes: ['pseudo']
         },
     },
     
@@ -58,6 +59,7 @@ exports.delete = (req, res, next) => {
   const token = req.headers.authorization.split(' ')[1];
   const decodedToken = jwt.verify(token, process.env.SECRET_PASS);    
   const userIdToken = decodedToken.userId;
+  console.log("log token : "+ userIdToken);
   const roleToken = decodedToken.role;
 
   Article.findOne({where: {id: req.params.id} })

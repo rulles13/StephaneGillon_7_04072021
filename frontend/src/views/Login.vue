@@ -33,7 +33,7 @@ export default {
         console.log(response.data);
         this.$router.push('/');
         localStorage.setItem('token', response.data.token);
-        localStorage.setItem('idUser', response.data.userId);
+        localStorage.setItem('userId', response.data.userId);
         localStorage.setItem('role', response.data.userRole);
         axios.defaults.headers["Authorization"] = `Bearer ${localStorage.getItem("token")}`;
         }, (error) => {

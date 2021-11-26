@@ -23,14 +23,14 @@ export default {
   methods: {
     logout() {
       localStorage.removeItem('token');
-      localStorage.removeItem('idUser');
+      localStorage.removeItem('userId');
       localStorage.removeItem('role');
       this.$router.push('/');
     },
 
     unsuscribe() {
-      console.log("l'utilisateur est " + localStorage.idUser);
-      axios.delete("/user/" + localStorage.idUser)
+      console.log("l'utilisateur est " + localStorage.userId);
+      axios.delete("/user/" + localStorage.userId)
       .then((response) => {
         window.alert("Vous avez disparu !")
         this.logout()

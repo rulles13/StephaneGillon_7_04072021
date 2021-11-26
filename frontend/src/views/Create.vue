@@ -40,7 +40,7 @@ export default {
        formData.append("image_link", this.selectedFile.name);
        formData.append("titre", this.newPost.titre);
        formData.append("text", this.newPost.text);
-       formData.append("userId", localStorage.getItem('idUser'));
+       formData.append("userId", localStorage.getItem('userId'));
 
       const config = {
         headers: {

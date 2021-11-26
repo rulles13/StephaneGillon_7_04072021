@@ -8,12 +8,12 @@ const User = db.user;
 const Op = db.Sequelize.Op;
 
 Article.hasMany(Coment);
-//Coment.belongsTo(Article);
-//Coment.belongsTo(User);
+Coment.belongsTo(Article);
+Coment.belongsTo(User);
 
 // Create a coment.
 exports.create = (req, res, next) => {
-
+console.log(req.body)
   const coment = {
     userId: req.body.userId,
     textComent: req.body.textComent,

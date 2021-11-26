@@ -11,7 +11,6 @@ const Op = db.Sequelize.Op;
 User.hasMany(Article);
 Article.belongsTo(User);
 
-
 exports.signup = (req, res, next) => {
   
   bcrypt.hash(req.body.password, 10)
@@ -19,7 +18,7 @@ exports.signup = (req, res, next) => {
       const user = {
         first_name: req.body.first_name,
         last_name: req.body.last_name,
-        birthdate: req.body.birthdate,
+        pseudo: req.body.pseudo,
         email: req.body.email,
         password: hash
       }

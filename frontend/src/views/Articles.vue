@@ -13,7 +13,7 @@
         <h2>{{ article.titre }}</h2>
         <img :src="article.image_link" class="imageBox">
         <div>{{article.text}}</div>
-        <div v-text="`By ${article.user.first_name} ${article.user.last_name}`"></div> 
+        <div v-text="`By ${article.userId.first_name} ${article.userId.last_name}`"></div> 
         <div class="deleteBox" v-if="isWriter(article.userId)">
           <img class="iconSVG" src="../icons/trash-alt-solid.svg" alt="recycle">
           <button v-on:click.prevent="sup(article.id)">delete</button>
@@ -59,7 +59,7 @@ export default {
       },
 
       isWriter(writer) {
-        if (localStorage.getItem("idUser") == writer || localStorage.getItem("role") == "admin")
+        if (localStorage.getItem("userId") == writer || localStorage.getItem("role") == "admin")
           {return true;}
       },
 

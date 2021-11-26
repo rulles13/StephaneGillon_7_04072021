@@ -11,8 +11,9 @@ module.exports = (sequelize, Sequelize) => {
     last_name: {
       type: Sequelize.STRING
     },
-    birthdate: {
-      type: Sequelize.DATE
+    pseudo: {
+      type: Sequelize.STRING,
+      unique: true
     },
     password: {
       type: Sequelize.STRING

@@ -48,7 +48,7 @@ export default {
       createComent() {
         
         axios.post('/coment/create', {
-          'userId': localStorage.getItem('idUser'),
+          'userId': localStorage.getItem('userId'),
           'textComent': this.textComent,
           'articleId': this.$route.params.id
         }).then((body) => {
@@ -80,7 +80,7 @@ export default {
       },
 
       isWriter(writer) {
-        if (localStorage.getItem("idUser") == writer || localStorage.getItem("role") == "admin")
+        if (localStorage.getItem("userId") == writer || localStorage.getItem("role") == "admin")
           {return true;}
       }
     },
