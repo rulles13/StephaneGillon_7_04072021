@@ -2,7 +2,7 @@
 # Etudiant : Stephane Gillon
 # Début du projet : 2021.07.04
 
-Groupomania est une société qui voudrait créer améliorer les interactions
+Groupomania est une société qui voudrait améliorer les interactions
 entre employés, pour ce faire elle voudrait un réseau social interne.
 Les employés pourront :
 1. Créer facilement leur profile (et le supprimer si besoin).
@@ -20,7 +20,6 @@ pour démmarer le frontend :
 - dans votre navigateur web aller à : http://localhost:8080/
 
 La partie backend (logique métier)
-- cloner ce dossier backend
 - ajouter à dans ce dossier le fichier :".env" qui contient les informations de connexion
 - ouvrir un deuxième terminal
 - en ligne de commande, aller dans le dossier backend : "cd backend"
