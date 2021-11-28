@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import Home from '../views/Home.vue';
-import ReadMessage from '../views/ReadMessage';
+import readArticle from '../views/ReadArticle';
 
 Vue.use(VueRouter)
 
@@ -40,8 +40,8 @@ const routes = [
   },
   {
     path: '/article/:id',
-    name: 'ReadMessage',
-    component: ReadMessage
+    name: 'readArticle',
+    component: readArticle
   },
  
 ]

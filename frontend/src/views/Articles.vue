@@ -8,15 +8,14 @@
         v-for="article in articles"
         :key="article.id"
         class="articleBox"
-        :to="{ name: 'ReadMessage', params: {id: article.id}}" 
+        :to="{ name: 'readArticle', params: {id: article.id}}" 
       >
         <h2>{{ article.titre }}</h2>
         <img :src="article.image_link" class="imageBox">
         <div>{{article.text}}</div>
-        <div v-text="`By ${article.userId.first_name} ${article.userId.last_name}`"></div> 
+        <div>Cliquez pour voir les commentaires</div>
         <div class="deleteBox" v-if="isWriter(article.userId)">
-          <img class="iconSVG" src="../icons/trash-alt-solid.svg" alt="recycle">
-          <button v-on:click.prevent="sup(article.id)">delete</button>
+          <img class="iconPNG" src="../icons/delete.png" alt="recycle" v-on:click.prevent="sup(article.id)">
         </div>
       </router-link>
     </div>
@@ -72,8 +71,7 @@ export default {
 </script>
 
 <style scoped lang="css">
-  
-  .article{
+    .article{
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -85,7 +83,7 @@ export default {
     display: block;
     background-color: white;
     border-radius: 10px;
-    width: 100%;
+    width: 300px;
     height: 400px;
     text-align: center;
     text-decoration: none;
@@ -102,8 +100,9 @@ export default {
   .deleteBox{
     display: flex;
     align-items: center;
-    width: 150px;
+    width: 95%;
     height: 30px;
+    justify-content: flex-end;
   }
   .iconSVG{
     display: flex;
@@ -113,14 +112,8 @@ export default {
     margin: 10px;
   }
 
-@media all and (min-width: 600px) {
-  .article{
-    
-    width: 90%;
-    margin: auto;
-    align-content: center;
-
-  }
+@media all and (min-width: 500px) {
+  
   
   .articleBox{
     width: 300px;
@@ -128,7 +121,11 @@ export default {
     align-content: center;
     margin: 20px;
   }
-  
+  .article{  
+    width: 100%;
+    margin: auto;
+    align-content: center;
+  }
 }
 
 </style>

@@ -13,7 +13,9 @@
       <div  v-for="commentar in commentary" :key="commentar.id">
         <div class="comText">
           <div> {{ commentar.textComent }} </div>
-          <span v-if="isWriter(commentar.userId)"><img class="iconPNG" src="../icons/delete.png" alt="delete coment" v-on:click.prevent="deleteComent(commentar.id)"></span>
+          <span v-if="isWriter(commentar.userId)">
+            <img class="iconPNG" src="../icons/delete.png" alt="delete coment" v-on:click.prevent="deleteComent(commentar.id)">
+          </span>
         </div>
       </div>
     </div> 
@@ -100,8 +102,8 @@ export default {
 }
 
 .iconPNG{
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   margin-left: 10px;
 }
 .imgSolo{
