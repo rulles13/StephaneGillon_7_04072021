@@ -2,12 +2,10 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> | 
-      <router-link to="/articles">Articles</router-link> | 
+      <span v-if="isLog()"><router-link to="/articles">Articles</router-link> | </span>
       <span v-if="isLog()"><router-link to="/logout">Logout</router-link></span>
       <span v-if="!isLog()"><router-link to="/login">Login</router-link> | </span>
       <span v-if="!isLog()"><router-link to="/signup">Sign Up</router-link></span>
-      <!-- <router-link v-if="isLog()" to="/create">Create</router-link> -->
-       
     </div>
     <router-view/>
   </div>

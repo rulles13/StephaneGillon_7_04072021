@@ -1,7 +1,7 @@
 <template>
-  <div class="messages">
+  <div v-if="isLog()" class="messages">
     <h1>Articles</h1>
-    <span v-if="isLog()"><router-link to="/create">Create</router-link></span>
+    <router-link to="/create">Create</router-link>
     <div class="article">
       
       <router-link 
@@ -20,6 +20,9 @@
       </router-link>
     </div>
 
+  </div>
+  <div v-else>
+    <span><h1>Vous n'êtes pas logué !</h1></span>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="articleBox">
+  <div v-if="isLog()" class="articleBox">
     <div class="container">
       <h1> {{article.titre}} </h1>
       <img class="imgSolo" :src="article.image_link">
@@ -19,6 +19,9 @@
         </div>
       </div>
     </div> 
+  </div>
+  <div v-else>
+    <span><h1>réservé aux membres !</h1></span>
   </div>
 </template>
 
@@ -84,6 +87,10 @@ export default {
       isWriter(writer) {
         if (localStorage.getItem("userId") == writer || localStorage.getItem("role") == "admin")
           {return true;}
+      },
+
+      isLog() {
+      return localStorage.getItem('token');
       }
     },
     
